@@ -50,7 +50,12 @@ public enum AISourceEnum {
     /**
      * 豆包 AI
      */
-    DOU_BAO_AI(7, "豆包")
+    DOU_BAO_AI(7, "豆包"),
+    
+    /**
+     * Qwen AI
+     */
+    QWEN_AI(8, "Qwen")
     ;
 
 

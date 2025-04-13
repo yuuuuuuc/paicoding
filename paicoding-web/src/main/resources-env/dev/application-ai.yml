@@ -57,7 +57,7 @@ xunfei:
 
 deepseek:
   apiHost: https://api.deepseek.com
-  apiKey: # 使用自己的密钥进行替换
+  apiKey: sk-76fba6b9226b46878a459641053f6514 # 使用自己的密钥进行替换
   timeout: 900 # 超时时间，单位秒
 
 doubao:
@@ -65,6 +65,10 @@ doubao:
   api-host: https://ark.cn-beijing.volces.com/api/v3
   end-point: # 使用自己创建的接入点进行替换
 
+qwen:
+  api-key: sk-a9464ea333d646f9b7e749253c35d614 # 使用自己的密钥进行替换
+  api-host: https://dashscope.aliyuncs.com/compatible-mode/v1/
+#  end-point: # 使用自己创建的接入点进行替换
 
 logging:
   level:
