@@ -50,6 +50,7 @@ public class QwenIntegration {
                 .build();
     }
 
+    //单伦
     public void streamReturn(ChatItemVo item, EventSourceListener listener) {
         // 创建一个新聊天消息对象，设置角色为用户，并填充用户的问题
         List<ChatMsg> msg = toMsg(item);
@@ -80,24 +81,33 @@ public class QwenIntegration {
 
             // 将聊天请求对象转换为JSON字符串
             String body = JsonUtil.toStr(req);
+
             // 构建请求对象，指定URL、认证头、内容类型头以及请求体
             Request request = new Request.Builder()
                     .url(qwenConf.getApiHost() + "/chat/completions")
-                    .addHeader("Authorization", "DASHSCOPE-API-KEY " + qwenConf.getApiKey())
+                    .addHeader("Authorization", "Bearer " + qwenConf.getApiKey())
                     .addHeader("Content-Type", "application/json")
                     .post(RequestBody.create(MediaType.parse(ContentType.JSON.getValue()), body))
                     .build();
+
+            log.info(request.toString());
             // 使用工厂创建新的EventSource，并传入请求和监听器
             factory.newEventSource(request, listener);
         } catch (Exception e) {
             // 记录请求失败的日志
-            log.error("qwen联调请求失败: {}", req, e);
+            // 记录请求失败的详细日志
+            log.error("千问API请求异常: {}, 详细错误: {}", req, e.getMessage(), e);
+            // 通知监听器发生错误
+            if (listener instanceof AbstractStreamListener) {
+                ((AbstractStreamListener) listener).onError(e, "请求发送失败: " + e.getMessage());
+            }
         }
     }
 
     private void executeStreamChat(List<ChatMsg> list, EventSourceListener listener) {
         ChatReq req = new ChatReq();
         req.setModel("qwen-plus");
+//        req.setModel("deepseek-chat");
         req.setMessages(list);
         this.executeStreamChat(req, listener);
     }
