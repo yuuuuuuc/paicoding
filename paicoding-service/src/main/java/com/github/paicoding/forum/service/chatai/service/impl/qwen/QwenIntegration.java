@@ -84,7 +84,7 @@ public class QwenIntegration {
 
             // 构建请求对象，指定URL、认证头、内容类型头以及请求体
             Request request = new Request.Builder()
-                    .url(qwenConf.getApiHost() + "/chat/completions")
+                    .url(qwenConf.getApiHost() + "/services/aigc/text-generation/generation")
                     .addHeader("Authorization", "Bearer " + qwenConf.getApiKey())
                     .addHeader("Content-Type", "application/json")
                     .post(RequestBody.create(MediaType.parse(ContentType.JSON.getValue()), body))
