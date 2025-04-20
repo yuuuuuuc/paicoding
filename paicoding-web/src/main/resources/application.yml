@@ -99,7 +99,7 @@ logging:
             handler.*: info # 定位为啥无妨访问swagger-ui时，可以把这个日志输出级别设置debug
 
 
-
+#测试
 # 监控相关配置
 management:
   server:
