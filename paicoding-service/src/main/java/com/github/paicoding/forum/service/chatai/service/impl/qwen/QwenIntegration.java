@@ -130,6 +130,7 @@ public class QwenIntegration {
     @ConfigurationProperties(prefix = "qwen")
     private static class QwenConfig {
         private String apikey;
+        private String apihost;
         private String model;
     }
 
